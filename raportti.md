@@ -86,3 +86,4 @@ Rust sijaitsee E asemassa windows koneellani.
 	  file.managed:
 	    - source: salt://rust/keys.cfg
 
+Näistä voisi periaatteessa tehdä default.cfg korvaavan templaten.
