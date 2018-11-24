@@ -57,3 +57,32 @@ Tämä ei toiminut heti. Teron sivustoilta löytyi seuraava fiksaus:
 	    total:
 	        260
 
+
+Päätin kokeilla asentaa VLC ilman masteria windowsilla powershellissä:
+	salt-call --local pkg.install vlc
+
+Piti painaa adminina continue installiin. Vlc toimii kuten kuuluu.
+
+Tein winkone moduulin, joka asentaa libreofficen:
+	~$ cat top.sls
+	base:
+	  xubuntu*:
+	    - hello
+	  windows*:
+	    - hello
+	    - winkone
+
+	~$ cat init.sls
+	  libreoffice:
+	  pkg.installed
+
+### C) muokkaa windows ohjelman asetuksia saltilla
+
+Päätin muuttaa Rust pelin keybindejäni saltin kautta. keys_default.cfg ovat defaultit, keys.cfg ovat itse muutetut.
+Rust sijaitsee E asemassa windows koneellani.
+
+	~$ cat init.sls
+	E:\Steam\steamapps\common\Rust\cfg\keys.cfg:
+	  file.managed:
+	    - source: salt://rust/keys.cfg
+
