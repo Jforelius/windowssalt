@@ -33,7 +33,7 @@ Asensin salt-minion 2017.7.4-py3-amd64 version, yhdistin slaveksi ja muokkasin h
 	    - source: salt://hello/hello.txt
 
 
-###B) windowsilla salttia ilman masteria - salt-call -local
+### B) windowsilla salttia ilman masteria - salt-call -local
 
 Kokeilin tehdä salt-call --version komentoa windowsin powershellillä, mutta tuli erroreita.
 Päätin käydä katsomassa saltin kansiota. Folderia tuplaklikkaamalla windows kysyi admin oikeuksia, joilla sain oikeudet kansioon. Nyt powershell komento toimi.
