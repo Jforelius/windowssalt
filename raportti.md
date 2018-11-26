@@ -78,12 +78,12 @@ Tein winkone moduulin, joka asentaa libreofficen:
 
 ### C) muokkaa windows ohjelman asetuksia saltilla
 
-Päätin muuttaa Rust pelin keybindejäni saltin kautta. keys_default.cfg ovat defaultit, keys.cfg ovat itse muutetut.
+Päätin muuttaa Rust pelin keybindejäni saltin kautta. keys_default.cfg filu on default keybindien asetus.
 Rust sijaitsee E asemassa windows koneellani.
 
 	~$ cat init.sls
-	E:\Steam\steamapps\common\Rust\cfg\keys.cfg:
+	E:\Steam\steamapps\common\Rust\cfg\keys_default.cfg:
 	  file.managed:
-	    - source: salt://rust/keys.cfg
+	    - source: salt://rust/keys_default.cfg
 
-Näistä voisi periaatteessa tehdä default.cfg korvaavan templaten.
+Tein siis templaten joka korvaa default keybindit rustissa.
