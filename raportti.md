@@ -17,10 +17,12 @@ Tein myös testi moduulin nopeasti
 	    - source: salt://hello/hello.txt
 
 katsoin vielä saltin version ennen windowsin minion asennusta:
+
 	~$ sudo salt --version
 	salt 2017.7.4 (Nitrogen)
 
 Asensin salt-minion 2017.7.4-py3-amd64 version, yhdistin slaveksi ja muokkasin hello:
+
 	~$ cat init.sls	
 	{% if "Windows" == grains["os"] %}
 	{%	set hellofile = "C:\hello.txt" %}
@@ -39,10 +41,12 @@ Kokeilin tehdä salt-call --version komentoa windowsin powershellillä, mutta tu
 Päätin käydä katsomassa saltin kansiota. Folderia tuplaklikkaamalla windows kysyi admin oikeuksia, joilla sain oikeudet kansioon. Nyt powershell komento toimi.
 
 ongelmana windows pakettien löytö: saltstack dokumentaatio auttoi:
-	salt-run winrepo.update_git_repos
-	salt -G 'os:windows' pkg.refresh_db
+
+	~$ salt-run winrepo.update_git_repos
+	~$ salt -G 'os:windows' pkg.refresh_db
 
 Tämä ei toiminut heti. Teron sivustoilta löytyi seuraava fiksaus:
+
 	~$ sudo mkdir /srv/salt/win
 	~$ sudo chown root.salt /srv/salt/win
 	~$ sudo chmod ug+rwx /srv/salt/win
@@ -59,11 +63,13 @@ Tämä ei toiminut heti. Teron sivustoilta löytyi seuraava fiksaus:
 
 
 Päätin kokeilla asentaa VLC ilman masteria windowsilla powershellissä:
+
 	salt-call --local pkg.install vlc
 
 Piti painaa adminina continue installiin. Vlc toimii kuten kuuluu.
 
 Tein winkone moduulin, joka asentaa libreofficen:
+
 	~$ cat top.sls
 	base:
 	  xubuntu*:
@@ -72,7 +78,7 @@ Tein winkone moduulin, joka asentaa libreofficen:
 	    - hello
 	    - winkone
 
-	~$ cat init.sls
+	~$ cat /srv/salt/winkone/init.sls
 	  libreoffice:
 	  pkg.installed
 
